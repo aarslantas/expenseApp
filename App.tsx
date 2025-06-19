@@ -5,7 +5,8 @@
  * @format
  */
 
-import { NewAppScreen } from '@react-native/new-app-screen';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {
   StatusBar,
   StyleSheet,
@@ -13,28 +14,44 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import AllExpenses from './screens/AllExpenses';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import RecentExpenses from './screens/RecentExponses';
+import ManageExpense from './screens/ManageExpense';
+
+const Stack = createNativeStackNavigator();
+const BottomTabs = createBottomTabNavigator();
+
+function ExpensesOverview() {
+  return (
+    <BottomTabs.Navigator>
+      <BottomTabs.Screen name="RecentExpenses" component={RecentExpenses} />
+      <BottomTabs.Screen name="AllExpenses" component={AllExpenses} />
+      {/* Add more tabs here as needed */}
+    </BottomTabs.Navigator>
+  );
+}
 
 function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <View style={styles.container}>
+    <>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Text style={styles.text}>Abdurrahman</Text>
-    </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="ExpensesOverview"
+            component={ExpensesOverview}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen name="ManageExpense" component={ManageExpense} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  text: {
-    color: '#000',
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
 
 export default App;
