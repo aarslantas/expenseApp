@@ -1,13 +1,16 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 
-export default function HomeScreen({ navigation, route }) {
+export default function PortfoyScreen({ navigation, route }) {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ fontSize: 24, marginBottom: 20 }}>
+        Ömer Asım ARSLANTAŞ
+      </Text>
       <Button
-        title="Buy GARAN 1"
+        title="Buy AKBNK"
         onPress={() =>
-          navigation.navigate('OrderBuySellStack', {
+          navigation.navigate('Order', {
             screen: 'OrderBuySell',
             params: {
               symbol: 'GARAN',
