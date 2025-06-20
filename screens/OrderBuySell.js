@@ -8,7 +8,7 @@ export default function OrderBuySell({ navigation, route }) {
       <Button
         title="Devam et (Detay)"
         onPress={() =>
-          navigation.navigate('Order', {
+          navigation.navigate('OrderBuySellStack', {
             screen: 'OrderDetail',
             params: {
               symbol: 'GARAN',

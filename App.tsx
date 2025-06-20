@@ -22,11 +22,26 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RecentExpenses from './screens/RecentExponses';
 import ManageExpense from './screens/ManageExpense';
 import { GlobalStyles } from './constans/styles';
-import OrderStack from './screens/OrderStack';
+import OrderStack from './screens/OrderBuySellStack';
 import HomeScreen from './screens/HomeScreen';
+import PortfoyScreen from './screens/PortfoyScreen';
+import OrdersScreen from './screens/OrdersScreen';
+import OrderBuySellStack from './screens/OrderBuySellStack';
 
-const Stack = createNativeStackNavigator();
-const BottomTabs = createBottomTabNavigator();
+const RootStack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+function Tabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="HomeTab" component={HomeScreen} />
+      <Tab.Screen name="OrdersTab" component={OrdersScreen} />
+      <Tab.Screen name="Portföy" component={PortfoyScreen} />
+      <Tab.Screen name="Settings" component={RecentExpenses} />
+      <Tab.Screen name="News" component={RecentExpenses} />
+    </Tab.Navigator>
+  );
+}
 
 // function ExpensesOverview() {
 //   return (
@@ -91,29 +106,23 @@ function App() {
     <>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <NavigationContainer>
-        <BottomTabs.Navigator
-          screenOptions={({ route }) => ({
-            headerStyle: {
-              backgroundColor: GlobalStyles.colors.primary500,
-            },
-            headerTintColor: GlobalStyles.colors.accent500,
-            tabBarStyle: getTabBarStyle(route),
-            tabBarActiveTintColor: GlobalStyles.colors.accent500,
-          })}
-        >
-          <BottomTabs.Screen name="Home" component={HomeScreen} />
-          <BottomTabs.Screen
-            name="Order"
-            component={OrderStack}
+        <RootStack.Navigator>
+          <RootStack.Screen
+            name="Tabs"
+            component={Tabs}
+            options={({ route }) => ({
+              headerShown: false,
+              tabBarStyle: getTabBarStyle(route),
+            })}
+          />
+          <RootStack.Screen
+            name="OrderBuySellStack"
+            component={OrderBuySellStack}
             options={{
-              headerShown: false, // OrderStack içinde kendi başlıkları var
+              headerShown: false,
             }}
           />
-          <BottomTabs.Screen name="Portföy" component={RecentExpenses} />
-          <BottomTabs.Screen name="Settings" component={RecentExpenses} />
-          <BottomTabs.Screen name="News" component={RecentExpenses} />
-          {/* Add more tabs here as needed */}
-        </BottomTabs.Navigator>
+        </RootStack.Navigator>
       </NavigationContainer>
     </>
   );
