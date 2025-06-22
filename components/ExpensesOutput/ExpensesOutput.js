@@ -30,7 +30,7 @@ function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
         expenses={DUMMY_EXPENSES}
         expensesPeriod={expensesPeriod}
       />
-      <ExpensesList />
+      <ExpensesList expenses={DUMMY_EXPENSES} />
     </View>
   );
 }
