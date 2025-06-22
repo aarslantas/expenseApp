@@ -57,7 +57,7 @@ function ExpensesOverview() {
           title: 'Recent Expenses',
           tabBarLabel: 'Recent',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="calendar" size={size} color={color} />
+            <Ionicons name="Home" size={size} color={color} />
           ),
           headerShown: false,
         }}
