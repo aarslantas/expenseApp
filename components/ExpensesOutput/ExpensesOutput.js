@@ -1,6 +1,8 @@
 import { View, Text, FlatList } from 'react-native';
 import ExpensesSummary from './ExpensesSummary';
 import ExpensesList from './ExpensesList';
+import { StyleSheet } from 'react-native/types_generated/index';
+import { GlobalStyles } from '../../constants/style';
 
 const DUMMY_EXPENSES = [
   {
@@ -25,7 +27,7 @@ const DUMMY_EXPENSES = [
 
 function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
   return (
-    <View>
+    <View style={styles.container}>
       <ExpensesSummary
         expenses={DUMMY_EXPENSES}
         expensesPeriod={expensesPeriod}
@@ -36,3 +38,11 @@ function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
 }
 
 export default ExpensesOutput;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+    backgroundColor: GlobalStyles.colors.primary100,
+  },
+});
