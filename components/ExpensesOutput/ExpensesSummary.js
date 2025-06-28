@@ -1,5 +1,4 @@
-import { View, Text } from 'react-native';
-import { StyleSheet } from 'react-native/types_generated/index';
+import { View, Text, StyleSheet } from 'react-native';
 import { GlobalStyles } from '../../constants/style';
 
 function ExpensesSummary({ periodName, expenses }) {
