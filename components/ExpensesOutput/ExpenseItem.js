@@ -6,12 +6,19 @@ import { GlobalStyles } from '../../constants/style';
 function ExpenseItem({ description, amount, date }) {
   return (
     <Pressable>
-      <View>
+      <View style={styles.exptenseItem}>
         <View>
-          <Text>{description}</Text>
-          <Text>{date}</Text>
+          <Text style={[styles.textBase, styles.description]}>
+            {description}
+          </Text>
+          <Text>
+            style={styles.textBase}
+            {date}
+          </Text>
         </View>
-        <Text>{amount}</Text>
+        <View style={styles.amountContainer}>
+          <Text style={styles.amount}>${amount.toFixed(2)}</Text>
+        </View>
       </View>
     </Pressable>
   );
@@ -43,8 +50,13 @@ const styles = StyleSheet.create({
   },
   amountContainer: {
     paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 4,
-    backgroundColor: GlobalStyles.colors.primary400,
+    paddingVertical: 4,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  amount: {
+    color: GlobalStyles.colors.primary500,
+    fontWeight: 'bold',
   },
 });
