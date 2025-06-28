@@ -20,11 +20,18 @@ import RecentExpenses from './screens/RecentExponses';
 import ManageExpense from './screens/ManageExpense';
 import { GlobalStyles } from './constants/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import IconButton from './components/ui/IconButton';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview() {
+  const handleAddExpense = () => {
+    // Logic to handle adding a new expense
+    console.log('Add Expense button pressed');
+  };
+
   return (
     <BottomTabs.Navigator
       screenOptions={{
@@ -36,6 +43,14 @@ function ExpensesOverview() {
           backgroundColor: GlobalStyles.colors.primary500,
         },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
+        headerRight: ({ tintColor }) => (
+          <IconButton
+            icon="add"
+            size={24}
+            color={tintColor}
+            onPress={handleAddExpense}
+          />
+        ),
       }}
     >
       <BottomTabs.Screen
@@ -56,7 +71,9 @@ function ExpensesOverview() {
         options={{
           title: 'Recent Expenses',
           tabBarLabel: 'Recent',
-          tabBarIcon: ({ color, size }) => <Ionicons name="Home" />,
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="Home" size={size} color={color} />
+          ),
           headerShown: false,
         }}
       />
@@ -69,21 +86,21 @@ function App() {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-            name="ExpensesOverview"
-            component={ExpensesOverview}
-            options={{
-              headerShown: false,
-            }}
-          />
-          <Stack.Screen name="ManageExpense" component={ManageExpense} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </>
+    <SafeAreaProvider>
+      <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+
+        <NavigationContainer>
+          <Stack.Navigator>
+            <Stack.Screen
+              name="ExpensesOverview"
+              component={ExpensesOverview}
+            />
+            <Stack.Screen name="ManageExpense" component={ManageExpense} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
 
