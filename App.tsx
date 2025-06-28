@@ -62,7 +62,6 @@ function ExpensesOverview() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="hourglass" size={size} color={color} />
           ),
-          headerShown: false,
         }}
       />
       <BottomTabs.Screen
@@ -74,7 +73,6 @@ function ExpensesOverview() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="Home" size={size} color={color} />
           ),
-          headerShown: false,
         }}
       />
       {/* Add more tabs here as needed */}
@@ -95,6 +93,9 @@ function App() {
             <Stack.Screen
               name="ExpensesOverview"
               component={ExpensesOverview}
+              options={{
+                headerShown: false,
+              }}
             />
             <Stack.Screen name="ManageExpense" component={ManageExpense} />
           </Stack.Navigator>
