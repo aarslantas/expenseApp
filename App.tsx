@@ -27,6 +27,11 @@ const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview() {
+  const handleAddExpense = () => {
+    // Logic to handle adding a new expense
+    console.log('Add Expense button pressed');
+  };
+
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
