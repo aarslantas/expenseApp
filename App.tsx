@@ -34,7 +34,7 @@ function ExpensesOverview() {
 
   return (
     <BottomTabs.Navigator
-      screenOptions={{
+      screenOptions={({ navigation }) => ({
         headerStyle: {
           backgroundColor: GlobalStyles.colors.primary500,
         },
@@ -48,10 +48,10 @@ function ExpensesOverview() {
             icon="add"
             size={24}
             color={tintColor}
-            onPress={handleAddExpense}
+            onPress={() => navigation.navigate('ManageExpense')}
           />
         ),
-      }}
+      })}
     >
       <BottomTabs.Screen
         name="RecentExpenses"
