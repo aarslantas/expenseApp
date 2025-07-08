@@ -27,11 +27,6 @@ const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
 
 function ExpensesOverview() {
-  const handleAddExpense = () => {
-    // Logic to handle adding a new expense
-    console.log('Add Expense button pressed');
-  };
-
   return (
     <BottomTabs.Navigator
       screenOptions={({ navigation }) => ({
@@ -96,13 +91,6 @@ function App() {
             }}
           >
             <Stack.Screen
-              name="ExpensesOverview"
-              component={ExpensesOverview}
-              options={{
-                headerShown: false,
-              }}
-            />
-            <Stack.Screen
               name="ManageExpense"
               component={ManageExpense}
               options={{
@@ -112,6 +100,13 @@ function App() {
                   backgroundColor: GlobalStyles.colors.primary500,
                 },
                 headerTintColor: 'white',
+              }}
+            />
+            <Stack.Screen
+              name="ExpensesOverview"
+              component={ExpensesOverview}
+              options={{
+                headerShown: false,
               }}
             />
           </Stack.Navigator>
