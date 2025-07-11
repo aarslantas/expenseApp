@@ -7,13 +7,7 @@
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { StatusBar, useColorScheme } from 'react-native';
 import AllExpenses from './screens/AllExpenses';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import RecentExpenses from './screens/RecentExponses';
@@ -94,6 +88,13 @@ function App() {
               }}
             >
               <Stack.Screen
+                name="ExpensesOverview"
+                component={ExpensesOverview}
+                options={{
+                  headerShown: false,
+                }}
+              />
+              <Stack.Screen
                 name="ManageExpense"
                 component={ManageExpense}
                 options={{
@@ -103,13 +104,6 @@ function App() {
                     backgroundColor: GlobalStyles.colors.primary500,
                   },
                   headerTintColor: 'white',
-                }}
-              />
-              <Stack.Screen
-                name="ExpensesOverview"
-                component={ExpensesOverview}
-                options={{
-                  headerShown: false,
                 }}
               />
             </Stack.Navigator>
