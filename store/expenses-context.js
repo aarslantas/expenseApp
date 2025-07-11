@@ -12,6 +12,7 @@ function expensesReducer(state, action) {
   switch (action.type) {
     case 'ADD':
       const id = new Date().toString() + Math.random().toString();
+      console.log('Adding Expense:', id);
       return [...state, { id, ...action.payload }];
     case 'UPDATE':
       return state.map(expense =>

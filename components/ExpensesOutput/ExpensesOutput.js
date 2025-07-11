@@ -26,6 +26,7 @@ export const DUMMY_EXPENSES = [
 ];
 
 function ExpensesOutput({ expenses, expensesPeriod }) {
+  console.log('Expenses Output:', expenses, expensesPeriod);
   return (
     <View style={styles.container}>
       <ExpensesSummary expenses={expenses} expensesPeriod={expensesPeriod} />
