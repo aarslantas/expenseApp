@@ -4,7 +4,7 @@ import ExpensesList from './ExpensesList';
 
 import { GlobalStyles } from '../../constants/style';
 
-const DUMMY_EXPENSES = [
+export const DUMMY_EXPENSES = [
   {
     id: 'e1',
     description: 'Groceries',
