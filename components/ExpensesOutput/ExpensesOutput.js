@@ -25,14 +25,11 @@ export const DUMMY_EXPENSES = [
   },
 ];
 
-function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
+function ExpensesOutput({ expenses, expensesPeriod }) {
   return (
     <View style={styles.container}>
-      <ExpensesSummary
-        expenses={DUMMY_EXPENSES}
-        expensesPeriod={expensesPeriod}
-      />
-      <ExpensesList expenses={DUMMY_EXPENSES} />
+      <ExpensesSummary expenses={expenses} expensesPeriod={expensesPeriod} />
+      <ExpensesList expenses={expenses} />
     </View>
   );
 }

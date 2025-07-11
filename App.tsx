@@ -22,6 +22,7 @@ import { GlobalStyles } from './constants/style';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import IconButton from './components/ui/IconButton';
+import ExpensesContextProvider from './store/expenses-context';
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -82,35 +83,38 @@ function App() {
     <SafeAreaProvider>
       <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerStyle: { backgroundColor: GlobalStyles.colors.primary500 },
-              headerTintColor: 'white',
-            }}
-          >
-            <Stack.Screen
-              name="ManageExpense"
-              component={ManageExpense}
-              options={{
-                presentation: 'modal',
-                headerTitle: 'Manage Expense',
+        <ExpensesContextProvider>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
                 headerStyle: {
                   backgroundColor: GlobalStyles.colors.primary500,
                 },
                 headerTintColor: 'white',
               }}
-            />
-            <Stack.Screen
-              name="ExpensesOverview"
-              component={ExpensesOverview}
-              options={{
-                headerShown: false,
-              }}
-            />
-          </Stack.Navigator>
-        </NavigationContainer>
+            >
+              <Stack.Screen
+                name="ManageExpense"
+                component={ManageExpense}
+                options={{
+                  presentation: 'modal',
+                  headerTitle: 'Manage Expense',
+                  headerStyle: {
+                    backgroundColor: GlobalStyles.colors.primary500,
+                  },
+                  headerTintColor: 'white',
+                }}
+              />
+              <Stack.Screen
+                name="ExpensesOverview"
+                component={ExpensesOverview}
+                options={{
+                  headerShown: false,
+                }}
+              />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </ExpensesContextProvider>
       </SafeAreaView>
     </SafeAreaProvider>
   );

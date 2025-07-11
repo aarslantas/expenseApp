@@ -1,7 +1,7 @@
 import { createContext, useReducer } from 'react';
 import { DUMMY_EXPENSES } from '../components/ExpensesOutput/ExpensesOutput';
 
-const ExpensesContext = createContext({
+export const ExpensesContext = createContext({
   expenses: [],
   addExpense: ({ description, amount, date }) => {},
   updateExpense: (id, { description, amount, date }) => {},
