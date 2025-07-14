@@ -4,7 +4,7 @@ import ExpensesList from './ExpensesList';
 
 import { GlobalStyles } from '../../constants/style';
 
-const DUMMY_EXPENSES = [
+export const DUMMY_EXPENSES = [
   {
     id: 'e1',
     description: 'Groceries',
@@ -26,13 +26,20 @@ const DUMMY_EXPENSES = [
 ];
 
 function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
+  let content = (
+    <Text style={styles.infoText}>
+      {fallbackText || 'No expenses found for the selected period.'}
+    </Text>
+  );
+
+  if (expenses.length > 0) {
+    content = <ExpensesList expenses={expenses} />;
+  }
+
   return (
     <View style={styles.container}>
-      <ExpensesSummary
-        expenses={DUMMY_EXPENSES}
-        expensesPeriod={expensesPeriod}
-      />
-      <ExpensesList expenses={DUMMY_EXPENSES} />
+      <ExpensesSummary expenses={expenses} expensesPeriod={expensesPeriod} />
+      {content}
     </View>
   );
 }
@@ -44,5 +51,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary100,
+  },
+  infoText: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+    marginTop: 32,
   },
 });
