@@ -25,12 +25,21 @@ export const DUMMY_EXPENSES = [
   },
 ];
 
-function ExpensesOutput({ expenses, expensesPeriod }) {
-  console.log('Expenses Output:', expenses, expensesPeriod);
+function ExpensesOutput({ expenses, expensesPeriod, fallbackText }) {
+  let content = (
+    <Text style={styles.infoText}>
+      {fallbackText || 'No expenses found for the selected period.'}
+    </Text>
+  );
+
+  if (expenses.length > 0) {
+    content = <ExpensesList expenses={expenses} />;
+  }
+
   return (
     <View style={styles.container}>
       <ExpensesSummary expenses={expenses} expensesPeriod={expensesPeriod} />
-      <ExpensesList expenses={expenses} />
+      {content}
     </View>
   );
 }
@@ -42,5 +51,11 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
     backgroundColor: GlobalStyles.colors.primary100,
+  },
+  infoText: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: 'white',
+    marginTop: 32,
   },
 });
